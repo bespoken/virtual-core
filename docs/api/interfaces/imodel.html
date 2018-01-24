@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AudioItemStream | Bespoken Virtual Alexa</title>
+	<title>IModel | Bespoken Virtual Core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Bespoken Virtual Alexa</a>
+					<a href="../index.html" class="title">Bespoken Virtual Core</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -52,21 +52,30 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="audioitemstream.html">AudioItemStream</a>
+					<a href="imodel.html">IModel</a>
 				</li>
 			</ul>
-			<h1>Class AudioItemStream</h1>
+			<h1>Interface IModel</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Parses and interprets an interaction model
+							Needs to define a hasIntent for it to be validated in the Utterances validation
+						Then can take a phrase and create an intentName request based on it</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AudioItemStream</span>
+						<span class="target">IModel</span>
 					</li>
 				</ul>
 			</section>
@@ -77,10 +86,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="audioitemstream.html#expectedprevioustoken" class="tsd-kind-icon">expected<wbr>Previous<wbr>Token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="audioitemstream.html#offsetinmilliseconds" class="tsd-kind-icon">offset<wbr>InMilliseconds</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="audioitemstream.html#token" class="tsd-kind-icon">token</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="audioitemstream.html#url" class="tsd-kind-icon">url</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#hasintent" class="tsd-kind-icon">has<wbr>Intent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#intentschema" class="tsd-kind-icon">intent<wbr>Schema</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#sampleutterances" class="tsd-kind-icon">sample<wbr>Utterances</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#slottypes" class="tsd-kind-icon">slot<wbr>Types</a></li>
 							</ul>
 						</section>
 					</div>
@@ -88,43 +97,64 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="expectedprevioustoken" class="tsd-anchor"></a>
-					<h3>expected<wbr>Previous<wbr>Token</h3>
-					<div class="tsd-signature tsd-kind-icon">expected<wbr>Previous<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hasintent" class="tsd-anchor"></a>
+					<h3>has<wbr>Intent</h3>
+					<div class="tsd-signature tsd-kind-icon">has<wbr>Intent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in AudioItem.ts:28</li>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/IModel.ts#L12">IModel.ts:12</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>intent<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>intent: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="intentschema" class="tsd-anchor"></a>
+					<h3>intent<wbr>Schema</h3>
+					<div class="tsd-signature tsd-kind-icon">intent<wbr>Schema<span class="tsd-signature-symbol">:</span> <a href="iintentschema.html" class="tsd-signature-type">IIntentSchema</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/IModel.ts#L13">IModel.ts:13</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="offsetinmilliseconds" class="tsd-anchor"></a>
-					<h3>offset<wbr>InMilliseconds</h3>
-					<div class="tsd-signature tsd-kind-icon">offset<wbr>InMilliseconds<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="sampleutterances" class="tsd-anchor"></a>
+					<h3>sample<wbr>Utterances</h3>
+					<div class="tsd-signature tsd-kind-icon">sample<wbr>Utterances<span class="tsd-signature-symbol">:</span> <a href="../classes/sampleutterances.html" class="tsd-signature-type">SampleUtterances</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in AudioItem.ts:29</li>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/IModel.ts#L14">IModel.ts:14</a></li>
 						</ul>
 					</aside>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="token" class="tsd-anchor"></a>
-					<h3>token</h3>
-					<div class="tsd-signature tsd-kind-icon">token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="slottypes" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> slot<wbr>Types</h3>
+					<div class="tsd-signature tsd-kind-icon">slot<wbr>Types<span class="tsd-signature-symbol">:</span> <a href="../classes/slottypes.html" class="tsd-signature-type">SlotTypes</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in AudioItem.ts:27</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="url" class="tsd-anchor"></a>
-					<h3>url</h3>
-					<div class="tsd-signature tsd-kind-icon">url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;null</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in AudioItem.ts:26</li>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/IModel.ts#L11">IModel.ts:11</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -140,56 +170,77 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="../enums/audioplayeractivity.html" class="tsd-kind-icon">Audio<wbr>Player<wbr>Activity</a>
+					<li class=" tsd-kind-class">
+						<a href="../classes/builtinslottype.html" class="tsd-kind-icon">Builtin<wbr>Slot<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="audioitem.html" class="tsd-kind-icon">Audio<wbr>Item</a>
+						<a href="../classes/builtinslottypes.html" class="tsd-kind-icon">Builtin<wbr>Slot<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/builtinutterances.html" class="tsd-kind-icon">Builtin<wbr>Utterances</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/intent.html" class="tsd-kind-icon">Intent</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/intentslot.html" class="tsd-kind-icon">Intent<wbr>Slot</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/numberslottype.html" class="tsd-kind-icon">Number<wbr>Slot<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/samplephrase.html" class="tsd-kind-icon">Sample<wbr>Phrase</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/samplephrasetest.html" class="tsd-kind-icon">Sample<wbr>Phrase<wbr>Test</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/sampleutterances.html" class="tsd-kind-icon">Sample<wbr>Utterances</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/slotmatch.html" class="tsd-kind-icon">Slot<wbr>Match</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/slottype.html" class="tsd-kind-icon">Slot<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/slottypes.html" class="tsd-kind-icon">Slot<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/utterance.html" class="tsd-kind-icon">Utterance</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="iintentschema.html" class="tsd-kind-icon">IIntent<wbr>Schema</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="audioitemstream.html" class="tsd-kind-icon">Audio<wbr>Item<wbr>Stream</a>
+					<li class="current tsd-kind-interface">
+						<a href="imodel.html" class="tsd-kind-icon">IModel</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="audioitemstream.html#expectedprevioustoken" class="tsd-kind-icon">expected<wbr>Previous<wbr>Token</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="imodel.html#hasintent" class="tsd-kind-icon">has<wbr>Intent</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="audioitemstream.html#offsetinmilliseconds" class="tsd-kind-icon">offset<wbr>InMilliseconds</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="imodel.html#intentschema" class="tsd-kind-icon">intent<wbr>Schema</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="audioitemstream.html#token" class="tsd-kind-icon">token</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="imodel.html#sampleutterances" class="tsd-kind-icon">sample<wbr>Utterances</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="audioitemstream.html#url" class="tsd-kind-icon">url</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="imodel.html#slottypes" class="tsd-kind-icon">slot<wbr>Types</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="audioplayer.html" class="tsd-kind-icon">Audio<wbr>Player</a>
+					<li class=" tsd-kind-interface">
+						<a href="islottype.html" class="tsd-kind-icon">ISlot<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="device.html" class="tsd-kind-icon">Device</a>
+					<li class=" tsd-kind-interface">
+						<a href="islotvalue.html" class="tsd-kind-icon">ISlot<wbr>Value</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="skillcontext.html" class="tsd-kind-icon">Skill<wbr>Context</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="skillsession.html" class="tsd-kind-icon">Skill<wbr>Session</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="user.html" class="tsd-kind-icon">User</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="virtualalexa.html" class="tsd-kind-icon">Virtual<wbr>Alexa</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="virtualalexabuilder.html" class="tsd-kind-icon">Virtual<wbr>Alexa<wbr>Builder</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#requestfilter" class="tsd-kind-icon">Request<wbr>Filter</a>
+					<li class=" tsd-kind-interface">
+						<a href="islotvaluename.html" class="tsd-kind-icon">ISlot<wbr>Value<wbr>Name</a>
 					</li>
 				</ul>
 			</nav>

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>AudioItem | Bespoken Virtual Alexa</title>
+	<title>SlotType | Bespoken Virtual Core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Bespoken Virtual Alexa</a>
+					<a href="../index.html" class="title">Bespoken Virtual Core</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -52,30 +52,33 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="audioitem.html">AudioItem</a>
+					<a href="slottype.html">SlotType</a>
 				</li>
 			</ul>
-			<h1>Class AudioItem</h1>
+			<h1>Class SlotType</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>Information about an AudioItem.</p>
-					</div>
-					<p>Directly ties off to the JSON payload from Alexa.</p>
-				</div>
-			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">AudioItem</span>
+						<span class="target">SlotType</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="builtinslottype.html" class="tsd-signature-type">BuiltinSlotType</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel">
+				<h3>Implements</h3>
+				<ul class="tsd-hierarchy">
+					<li><a href="../interfaces/islottype.html" class="tsd-signature-type">ISlotType</a></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -85,19 +88,20 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="audioitem.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="slottype.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="audioitem.html#stream" class="tsd-kind-icon">stream</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="slottype.html#name" class="tsd-kind-icon">name</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="slottype.html#values" class="tsd-kind-icon">values</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="audioitem.html#clone" class="tsd-kind-icon">clone</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="slottype.html#match" class="tsd-kind-icon">match</a></li>
 							</ul>
 						</section>
 					</div>
@@ -109,22 +113,25 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Audio<wbr>Item<span class="tsd-signature-symbol">(</span>_json<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="audioitem.html" class="tsd-signature-type">AudioItem</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Slot<wbr>Type<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, values<span class="tsd-signature-symbol">: </span><a href="../interfaces/islotvalue.html" class="tsd-signature-type">ISlotValue</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="slottype.html" class="tsd-signature-type">SlotType</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AudioItem.ts:7</li>
+									<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/SlotTypes.ts#L52">SlotTypes.ts:52</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>_json: <span class="tsd-signature-type">any</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
+								</li>
+								<li>
+									<h5>values: <a href="../interfaces/islotvalue.html" class="tsd-signature-type">ISlotValue</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="audioitem.html" class="tsd-signature-type">AudioItem</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="slottype.html" class="tsd-signature-type">SlotType</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -132,12 +139,24 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="stream" class="tsd-anchor"></a>
-					<h3>stream</h3>
-					<div class="tsd-signature tsd-kind-icon">stream<span class="tsd-signature-symbol">:</span> <a href="audioitemstream.html" class="tsd-signature-type">AudioItemStream</a></div>
+					<a name="name" class="tsd-anchor"></a>
+					<h3>name</h3>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/islottype.html">ISlotType</a>.<a href="../interfaces/islottype.html#name">name</a></p>
 						<ul>
-							<li>Defined in AudioItem.ts:7</li>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/SlotTypes.ts#L53">SlotTypes.ts:53</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
+					<a name="values" class="tsd-anchor"></a>
+					<h3>values</h3>
+					<div class="tsd-signature tsd-kind-icon">values<span class="tsd-signature-symbol">:</span> <a href="../interfaces/islotvalue.html" class="tsd-signature-type">ISlotValue</a><span class="tsd-signature-symbol">[]</span></div>
+					<aside class="tsd-sources">
+						<p>Implementation of <a href="../interfaces/islottype.html">ISlotType</a>.<a href="../interfaces/islottype.html#values">values</a></p>
+						<ul>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/SlotTypes.ts#L53">SlotTypes.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -145,24 +164,25 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="clone" class="tsd-anchor"></a>
-					<h3>clone</h3>
+					<a name="match" class="tsd-anchor"></a>
+					<h3>match</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">clone<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="audioitem.html" class="tsd-signature-type">AudioItem</a></li>
+						<li class="tsd-signature tsd-kind-icon">match<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="slotmatch.html" class="tsd-signature-type">SlotMatch</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in AudioItem.ts:20</li>
+									<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/SlotTypes.ts#L55">SlotTypes.ts:55</a></li>
 								</ul>
 							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Clone function to prevent changes being made to internal state</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="audioitem.html" class="tsd-signature-type">AudioItem</a></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>value: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="slotmatch.html" class="tsd-signature-type">SlotMatch</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -178,53 +198,77 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="../enums/audioplayeractivity.html" class="tsd-kind-icon">Audio<wbr>Player<wbr>Activity</a>
+					<li class=" tsd-kind-class">
+						<a href="builtinslottype.html" class="tsd-kind-icon">Builtin<wbr>Slot<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="builtinslottypes.html" class="tsd-kind-icon">Builtin<wbr>Slot<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="builtinutterances.html" class="tsd-kind-icon">Builtin<wbr>Utterances</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="intent.html" class="tsd-kind-icon">Intent</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="intentslot.html" class="tsd-kind-icon">Intent<wbr>Slot</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="numberslottype.html" class="tsd-kind-icon">Number<wbr>Slot<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="samplephrase.html" class="tsd-kind-icon">Sample<wbr>Phrase</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="samplephrasetest.html" class="tsd-kind-icon">Sample<wbr>Phrase<wbr>Test</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="sampleutterances.html" class="tsd-kind-icon">Sample<wbr>Utterances</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="slotmatch.html" class="tsd-kind-icon">Slot<wbr>Match</a>
 					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class">
-						<a href="audioitem.html" class="tsd-kind-icon">Audio<wbr>Item</a>
+						<a href="slottype.html" class="tsd-kind-icon">Slot<wbr>Type</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="audioitem.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="slottype.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="audioitem.html#stream" class="tsd-kind-icon">stream</a>
+								<a href="slottype.html#name" class="tsd-kind-icon">name</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-class">
+								<a href="slottype.html#values" class="tsd-kind-icon">values</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="audioitem.html#clone" class="tsd-kind-icon">clone</a>
+								<a href="slottype.html#match" class="tsd-kind-icon">match</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-class">
-						<a href="audioitemstream.html" class="tsd-kind-icon">Audio<wbr>Item<wbr>Stream</a>
+						<a href="slottypes.html" class="tsd-kind-icon">Slot<wbr>Types</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="audioplayer.html" class="tsd-kind-icon">Audio<wbr>Player</a>
+						<a href="utterance.html" class="tsd-kind-icon">Utterance</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="device.html" class="tsd-kind-icon">Device</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/iintentschema.html" class="tsd-kind-icon">IIntent<wbr>Schema</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="skillcontext.html" class="tsd-kind-icon">Skill<wbr>Context</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/imodel.html" class="tsd-kind-icon">IModel</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="skillsession.html" class="tsd-kind-icon">Skill<wbr>Session</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/islottype.html" class="tsd-kind-icon">ISlot<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="user.html" class="tsd-kind-icon">User</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/islotvalue.html" class="tsd-kind-icon">ISlot<wbr>Value</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="virtualalexa.html" class="tsd-kind-icon">Virtual<wbr>Alexa</a>
-					</li>
-					<li class=" tsd-kind-class">
-						<a href="virtualalexabuilder.html" class="tsd-kind-icon">Virtual<wbr>Alexa<wbr>Builder</a>
-					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#requestfilter" class="tsd-kind-icon">Request<wbr>Filter</a>
+					<li class=" tsd-kind-interface">
+						<a href="../interfaces/islotvaluename.html" class="tsd-kind-icon">ISlot<wbr>Value<wbr>Name</a>
 					</li>
 				</ul>
 			</nav>

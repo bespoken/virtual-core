@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>User | Bespoken Virtual Alexa</title>
+	<title>IIntentSchema | Bespoken Virtual Core</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">Bespoken Virtual Alexa</a>
+					<a href="../index.html" class="title">Bespoken Virtual Core</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -52,10 +52,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="user.html">User</a>
+					<a href="iintentschema.html">IIntentSchema</a>
 				</li>
 			</ul>
-			<h1>Class User</h1>
+			<h1>Interface IIntentSchema</h1>
 		</div>
 	</div>
 </header>
@@ -66,7 +66,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">User</span>
+						<span class="target">IIntentSchema</span>
 					</li>
 				</ul>
 			</section>
@@ -75,94 +75,104 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
-							<h3>Constructors</h3>
+							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="user.html#constructor" class="tsd-kind-icon">constructor</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section ">
-							<h3>Methods</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="user.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="user.html#setid" class="tsd-kind-icon">setID</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iintentschema.html#hasintent" class="tsd-kind-icon">has<wbr>Intent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iintentschema.html#intent" class="tsd-kind-icon">intent</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="iintentschema.html#intents" class="tsd-kind-icon">intents</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Constructors</h2>
-				<section class="tsd-panel tsd-member tsd-kind-constructor tsd-parent-kind-class">
-					<a name="constructor" class="tsd-anchor"></a>
-					<h3>constructor</h3>
-					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>User<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="user.html" class="tsd-signature-type">User</a></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in User.ts:5</li>
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="hasintent" class="tsd-anchor"></a>
+					<h3>has<wbr>Intent</h3>
+					<div class="tsd-signature tsd-kind-icon">has<wbr>Intent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/IIntentSchema.ts#L4">IIntentSchema.ts:4</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>intentString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>internal</dt>
-									<dd></dd>
-								</dl>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> id: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="user.html" class="tsd-signature-type">User</a></h4>
-						</li>
-					</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>intentString: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group ">
-				<h2>Methods</h2>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="id" class="tsd-anchor"></a>
-					<h3>id</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in User.ts:15</li>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="intent" class="tsd-anchor"></a>
+					<h3>intent</h3>
+					<div class="tsd-signature tsd-kind-icon">intent<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/IIntentSchema.ts#L3">IIntentSchema.ts:3</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>intentString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/intent.html" class="tsd-signature-type">Intent</a></li>
 								</ul>
-							</aside>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						</li>
-					</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>intentString: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <a href="../classes/intent.html" class="tsd-signature-type">Intent</a></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="setid" class="tsd-anchor"></a>
-					<h3>setID</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">setID<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in User.ts:19</li>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="intents" class="tsd-anchor"></a>
+					<h3>intents</h3>
+					<div class="tsd-signature tsd-kind-icon">intents<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/bespoken/virtual-core/blob/3881be3/src/IIntentSchema.ts#L2">IIntentSchema.ts:2</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/intent.html" class="tsd-signature-type">Intent</a><span class="tsd-signature-symbol">[]</span></li>
 								</ul>
-							</aside>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>id: <span class="tsd-signature-type">string</span></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-returns-title">Returns <a href="../classes/intent.html" class="tsd-signature-type">Intent</a><span class="tsd-signature-symbol">[]</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -176,53 +186,74 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="../enums/audioplayeractivity.html" class="tsd-kind-icon">Audio<wbr>Player<wbr>Activity</a>
+					<li class=" tsd-kind-class">
+						<a href="../classes/builtinslottype.html" class="tsd-kind-icon">Builtin<wbr>Slot<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="audioitem.html" class="tsd-kind-icon">Audio<wbr>Item</a>
+						<a href="../classes/builtinslottypes.html" class="tsd-kind-icon">Builtin<wbr>Slot<wbr>Types</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="audioitemstream.html" class="tsd-kind-icon">Audio<wbr>Item<wbr>Stream</a>
+						<a href="../classes/builtinutterances.html" class="tsd-kind-icon">Builtin<wbr>Utterances</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="audioplayer.html" class="tsd-kind-icon">Audio<wbr>Player</a>
+						<a href="../classes/intent.html" class="tsd-kind-icon">Intent</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="device.html" class="tsd-kind-icon">Device</a>
+						<a href="../classes/intentslot.html" class="tsd-kind-icon">Intent<wbr>Slot</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="skillcontext.html" class="tsd-kind-icon">Skill<wbr>Context</a>
+						<a href="../classes/numberslottype.html" class="tsd-kind-icon">Number<wbr>Slot<wbr>Type</a>
 					</li>
 					<li class=" tsd-kind-class">
-						<a href="skillsession.html" class="tsd-kind-icon">Skill<wbr>Session</a>
+						<a href="../classes/samplephrase.html" class="tsd-kind-icon">Sample<wbr>Phrase</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/samplephrasetest.html" class="tsd-kind-icon">Sample<wbr>Phrase<wbr>Test</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/sampleutterances.html" class="tsd-kind-icon">Sample<wbr>Utterances</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/slotmatch.html" class="tsd-kind-icon">Slot<wbr>Match</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/slottype.html" class="tsd-kind-icon">Slot<wbr>Type</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/slottypes.html" class="tsd-kind-icon">Slot<wbr>Types</a>
+					</li>
+					<li class=" tsd-kind-class">
+						<a href="../classes/utterance.html" class="tsd-kind-icon">Utterance</a>
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-class">
-						<a href="user.html" class="tsd-kind-icon">User</a>
+					<li class="current tsd-kind-interface">
+						<a href="iintentschema.html" class="tsd-kind-icon">IIntent<wbr>Schema</a>
 						<ul>
-							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="user.html#constructor" class="tsd-kind-icon">constructor</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iintentschema.html#hasintent" class="tsd-kind-icon">has<wbr>Intent</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="user.html#id" class="tsd-kind-icon">id</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iintentschema.html#intent" class="tsd-kind-icon">intent</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="user.html#setid" class="tsd-kind-icon">setID</a>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="iintentschema.html#intents" class="tsd-kind-icon">intents</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-class">
-						<a href="virtualalexa.html" class="tsd-kind-icon">Virtual<wbr>Alexa</a>
+					<li class=" tsd-kind-interface">
+						<a href="imodel.html" class="tsd-kind-icon">IModel</a>
 					</li>
-					<li class=" tsd-kind-class">
-						<a href="virtualalexabuilder.html" class="tsd-kind-icon">Virtual<wbr>Alexa<wbr>Builder</a>
+					<li class=" tsd-kind-interface">
+						<a href="islottype.html" class="tsd-kind-icon">ISlot<wbr>Type</a>
 					</li>
-					<li class=" tsd-kind-type-alias">
-						<a href="../globals.html#requestfilter" class="tsd-kind-icon">Request<wbr>Filter</a>
+					<li class=" tsd-kind-interface">
+						<a href="islotvalue.html" class="tsd-kind-icon">ISlot<wbr>Value</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="islotvaluename.html" class="tsd-kind-icon">ISlot<wbr>Value<wbr>Name</a>
 					</li>
 				</ul>
 			</nav>
