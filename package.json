@@ -9,8 +9,14 @@
     "node": "> 6.0.0"
   },
   "files": [
-    "lib/src/*.js"
-  ],
+    "lib/src/*.js",
+    "lib/src/BuiltinSlotTypes.d.ts",
+    "lib/src/BuiltinUtterances.d.ts",
+    "lib/src/IIntentSchema.d.ts",
+    "lib/src/IModel.d.ts",
+    "lib/src/SampleUtterances.d.ts",
+    "lib/src/SlotTypes.d.ts",
+    "lib/src/Utterance.d.ts" ],
   "nyc": {
     "exclude": [
       "lib/test/*.js",
