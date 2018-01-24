@@ -2,22 +2,14 @@
   "name": "virtual-core",
   "license": "Apache-2.0",
   "private": false,
-  "version": "0.4.2-0",
+  "version": "0.0.1",
   "main": "./lib/src/Index.js",
   "typings": "./lib/src/Index.d.ts",
   "engines": {
     "node": "> 6.0.0"
   },
   "files": [
-    "lib/src/*.js",
-    "lib/src/AudioItem.d.ts",
-    "lib/src/AudioPlayer.d.ts",
-    "lib/src/Device.d.ts",
-    "lib/src/Index.d.ts",
-    "lib/src/SkillContext.d.ts",
-    "lib/src/SkillSession.d.ts",
-    "lib/src/User.d.ts",
-    "lib/src/VirtualAlexa.d.ts"
+    "lib/src/*.js"
   ],
   "nyc": {
     "exclude": [
