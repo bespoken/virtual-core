@@ -1,0 +1,57 @@
+{
+  "name": "virtual-core",
+  "license": "Apache-2.0",
+  "private": false,
+  "version": "0.0.1",
+  "main": "./lib/src/Index.js",
+  "typings": "./lib/src/Index.d.ts",
+  "engines": {
+    "node": "> 6.0.0"
+  },
+  "files": [
+    "lib/src/*.js",
+    "lib/src/BuiltinSlotTypes.d.ts",
+    "lib/src/BuiltinUtterances.d.ts",
+    "lib/src/IIntentSchema.d.ts",
+    "lib/src/IModel.d.ts",
+    "lib/src/SampleUtterances.d.ts",
+    "lib/src/SlotTypes.d.ts",
+    "lib/src/Utterance.d.ts" ],
+  "nyc": {
+    "exclude": [
+      "lib/test/*.js",
+      "test/**/*.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bespoken/virtual-core.git"
+  },
+  "scripts": {
+    "docs": "gulp --gulpfile docs/gulpfile.js --cwd .",
+    "posttest": "nyc report --reporter=json --reporter=html && codecov -f coverage/*.json",
+    "pretest": "npm run tsc",
+    "test": "nyc mocha lib/**/*Test.js",
+    "tsc": "tsc",
+    "typings": "typings install"
+  },
+  "dependencies": {
+    "@types/uuid": "^3.4.3",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.1",
+    "@types/mocha": "^2.2.46",
+    "@types/node": "^6.0.88",
+    "chai": "^4.1.2",
+    "codecov": "^2.3.0",
+    "gulp": "^3.9.1",
+    "gulp-typedoc": "^2.0.3",
+    "mocha": "^3.5.0",
+    "nyc": "^11.1.0",
+    "ts-node": "^3.3.0",
+    "tslint": "^5.7.0",
+    "typedoc": "^0.8.0",
+    "typescript": "^2.5.1"
+  }
+}
