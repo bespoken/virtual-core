@@ -1,107 +1,136 @@
 import {assert} from "chai";
-import {IntentSchema} from "../src/IntentSchema";
-import {InteractionModel} from "../src/InteractionModel";
+import {BuiltinSlotTypes} from "../src/BuiltinSlotTypes";
+import {IIntentSchema, Intent, IntentSlot} from "../src/IIntentSchema";
+import {IModel} from "../src/IModel";
 import {SampleUtterances} from "../src/SampleUtterances";
 import {SlotTypes} from "../src/SlotTypes";
 import {Utterance} from "../src/Utterance";
 
+const unpreparedIntentList = [
+    {
+        intent: "Play",
+    },
+    {
+        intent: "Hello",
+    },
+    {
+        intent: "NoSampleUtterances",
+    },
+    {
+        intent: "SlottedIntent",
+        slots: [
+            {name: "SlotName", type: "SLOT_TYPE"},
+        ],
+    },
+    {
+        intent: "MultipleSlots",
+        slots: [
+            {name: "SlotA", type: "SLOT_TYPE"},
+            {name: "SlotB", type: "SLOT_TYPE"},
+        ],
+    },
+    {
+        intent: "CustomSlot",
+        slots: [
+            {name: "country", type: "COUNTRY_CODE"},
+        ],
+    },
+    {
+        intent: "NumberSlot",
+        slots: [
+            {name: "number", type: "AMAZON.NUMBER"},
+        ],
+    },
+    {
+        intent: "StringSlot",
+        slots: [
+            {name: "stringSlot", type: "StringSlotType"},
+        ],
+    },
+    {
+        intent: "AMAZON.HelpIntent",
+    },
+];
+const intentList: Intent[] = unpreparedIntentList.map((intent) => {
+        const generatedIntent = new Intent(intent.intent, intent.intent.includes("AMAZON"));
+        const casteIntent = intent as any;
+        if (casteIntent.slots) {
+            casteIntent.slots.forEach((slot: {name: string, type: string}) => {
+                generatedIntent.addSlot(new IntentSlot(slot.name, slot.type));
+            });
+        }
+        return generatedIntent;
+    });
+
+const intentSchema: IIntentSchema = {
+    hasIntent: (intentString: string) => {
+        return intentList.some((intent) => intentString === intent.name);
+    },
+    intent: (intentString: string) => {
+       return intentList.find((intent) => intentString === intent.name);
+    },
+    intents: () => intentList,
+};
+
+const sampleUtterancesValues = {
+    CustomSlot: ["{country}"],
+    Hello: ["hi", "hello", "hi there", "good morning"],
+    MultipleSlots: ["multiple {SlotA} and {SlotB}", "reversed {SlotB} then {SlotA}", "{SlotA}"],
+    NumberSlot: ["{number}", "{number} test"],
+    Play: ["play", "play next", "play now"],
+    SlottedIntent: ["slot {SlotName}"],
+    StringSlot: ["{stringSlot}"],
+};
+
+const slotTypes = [{
+    name: "COUNTRY_CODE",
+    values: [
+        {
+            id: "US",
+            name: {
+                synonyms: ["USA", "America", "US"],
+                value: "US",
+            },
+        },
+        {
+            id: "DE",
+            name: {
+                synonyms: ["Germany", "DE"],
+                value: "DE",
+            },
+        },
+        {
+            id: "UK",
+            name: {
+                synonyms: ["England", "Britain", "UK", "United Kingdom", "Great Britain"],
+                value: "UK",
+            },
+        },
+    ],
+}];
+
+const model: IModel = {
+    hasIntent: (intentString: string) => {
+        return intentList.some((intent) => intentString === intent.name);
+    },
+    intentSchema,
+    sampleUtterances: null,
+    slotTypes: new SlotTypes(slotTypes),
+};
+
+model.slotTypes.addTypes(BuiltinSlotTypes.values());
+
+model.sampleUtterances = new SampleUtterances(model);
+
+model.sampleUtterances.addBuiltInSampleUtterances();
+
+Object.keys(sampleUtterancesValues).forEach((slotName) => {
+        (sampleUtterancesValues as any)[slotName].forEach((sample: string) => {
+        model.sampleUtterances.addSample(slotName, sample);
+    });
+});
+
 describe("UtteranceTest", function() {
-    this.timeout(10000);
-
-    const intentSchema = {
-        intents: [
-            {
-                intent: "Play",
-            },
-            {
-                intent: "Hello",
-            },
-            {
-                intent: "NoSampleUtterances",
-            },
-            {
-                intent: "SlottedIntent",
-                slots: [
-                    {name: "SlotName", type: "SLOT_TYPE"},
-                ],
-            },
-            {
-                intent: "MultipleSlots",
-                slots: [
-                    {name: "SlotA", type: "SLOT_TYPE"},
-                    {name: "SlotB", type: "SLOT_TYPE"},
-                ],
-            },
-            {
-                intent: "CustomSlot",
-                slots: [
-                    {name: "country", type: "COUNTRY_CODE"},
-                ],
-            },
-            {
-                intent: "NumberSlot",
-                slots: [
-                    {name: "number", type: "AMAZON.NUMBER"},
-                ],
-            },
-            {
-                intent: "StringSlot",
-                slots: [
-                    {name: "stringSlot", type: "StringSlotType"},
-                ],
-            },
-            {
-                intent: "AMAZON.HelpIntent",
-            },
-        ],
-    };
-
-    const sampleUtterances = {
-        CustomSlot: ["{country}"],
-        Hello: ["hi", "hello", "hi there", "good morning"],
-        MultipleSlots: ["multiple {SlotA} and {SlotB}", "reversed {SlotB} then {SlotA}", "{SlotA}"],
-        NumberSlot: ["{number}", "{number} test"],
-        Play: ["play", "play next", "play now"],
-        SlottedIntent: ["slot {SlotName}"],
-        StringSlot: ["{stringSlot}"],
-    };
-
-    const slotTypes = [{
-        name: "COUNTRY_CODE",
-        values: [
-            {
-                id: "US",
-                name: {
-                    synonyms: ["USA", "America", "US"],
-                    value: "US",
-                },
-            },
-            {
-                id: "DE",
-                name: {
-                    synonyms: ["Germany", "DE"],
-                    value: "DE",
-                },
-            },
-            {
-                id: "UK",
-                name: {
-                    synonyms: ["England", "Britain", "UK", "United Kingdom", "Great Britain"],
-                    value: "UK",
-                },
-            },
-        ],
-    }];
-
-    const is = IntentSchema.fromJSON(intentSchema);
-    const model = new InteractionModel(IntentSchema.fromJSON(intentSchema),
-        SampleUtterances.fromJSON(sampleUtterances),
-        new SlotTypes(slotTypes));
-
-    console.log("location: ", process.cwd());
-
-    const japaneseModel = InteractionModel.fromFile("./test/resources/japanese_skill/models/ja-JP.json");
-
     describe("#matchIntent", () => {
         it("Matches a simple phrase", () => {
             const utterance = new Utterance(model, "play");
@@ -218,22 +247,6 @@ describe("UtteranceTest", function() {
             const utterance = new Utterance(model, "good, -morning:");
             assert.isTrue(utterance.matched());
             assert.equal(utterance.intent(), "Hello");
-        });
-
-        describe("Matches for International Languages", function() {
-            it("Matches a slotted phrase", () => {
-                const utterance = new Utterance(japaneseModel, "5 人のプレーヤー");
-                assert.isTrue(utterance.matched());
-                assert.equal(utterance.intent(), "GetIntentWithSlot");
-                assert.equal(utterance.slot(0), "5");
-                assert.equal(utterance.slotByName("number"), "5");
-            });
-
-            it("Matches a slotted phrase, no slot value", () => {
-                const utterance = new Utterance(japaneseModel, "おはよう");
-                assert.isTrue(utterance.matched());
-                assert.equal(utterance.intent(), "GetIntent");
-            });
         });
     });
 });

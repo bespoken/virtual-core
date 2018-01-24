@@ -1,36 +1,22 @@
-import * as fs from "fs";
 import {BuiltinUtterances} from "./BuiltinUtterances";
-import {IntentSchema} from "./IntentSchema";
-import {InteractionModel} from "./InteractionModel";
+import {IIntentSchema} from "./IIntentSchema";
+import {IModel} from "./IModel";
 import {SlotMatch, SlotTypes} from "./SlotTypes";
 
 export class SampleUtterances {
-    public static fromFile(file: string): SampleUtterances {
-        const data = fs.readFileSync(file);
-        const utterances = new SampleUtterances();
-        utterances.parseFlatFile(data.toString());
-        return utterances;
-    }
+    private _interactionModel: IModel;
 
-    public static fromJSON(sampleUtterancesJSON: any) {
-        const sampleUtterances = new SampleUtterances();
-        for (const intent of Object.keys(sampleUtterancesJSON)) {
-            for (const sample of sampleUtterancesJSON[intent]) {
-                sampleUtterances.addSample(intent, sample);
-            }
-        }
-        return sampleUtterances;
-    }
-
-    private _interactionModel: InteractionModel;
     private samples: {[id: string]: SamplePhrase[]} = {};
+
+    public constructor(interactionModel: IModel) {
+        this._interactionModel = interactionModel;
+    }
 
     // This is its own method, because it needs to be called at a particular point in initialization
     // We call it after loading the sample utterances and intents, while initializing the interaction model
     // Once we have the interaction model, we go back in add the builtin utterances
-    public setInteractionModel(interactionModel: InteractionModel) {
-        this._interactionModel = interactionModel;
-
+    public addBuiltInSampleUtterances() {
+        // Move to specific implementations
         const builtinValues = BuiltinUtterances.values();
         // We add each phrase one-by-one
         // It is possible the built-ins have additional samples defined
@@ -43,7 +29,7 @@ export class SampleUtterances {
         }
     }
 
-    public interactionModel(): InteractionModel {
+    public interactionModel(): IModel {
         return this._interactionModel;
     }
 
@@ -51,7 +37,7 @@ export class SampleUtterances {
         if (!(intent in this.samples)) {
             this.samples[intent] = [];
         }
-        this.samples[intent].push(new SamplePhrase(this, intent, sample));
+        this.samples[intent].push(new SamplePhrase(this._interactionModel, this, intent, sample));
     }
 
     public samplesForIntent(intent: string): SamplePhrase [] {
@@ -97,7 +83,8 @@ export class SamplePhrase {
     private slotNames: string[] = [];
     private _regex: string;
 
-    public constructor(public sampleUtterances: SampleUtterances,
+    public constructor(private interactionModel: IModel,
+                       public sampleUtterances: SampleUtterances,
                        public intent: string,
                        public phrase: string) {
         this.phrase = phrase;
@@ -128,7 +115,7 @@ export class SamplePhrase {
      * @returns {[]}
      */
     public matchesUtterance(utterance: string): SamplePhraseTest {
-        return new SamplePhraseTest(this, utterance);
+        return new SamplePhraseTest(this.interactionModel, this, utterance);
     }
 
     /**
@@ -158,7 +145,7 @@ export class SamplePhraseTest {
     private matched = false;
     private matchString: string;
 
-    public constructor(public samplePhrase: SamplePhrase, private utterance: string) {
+    public constructor(private interactionModel: IModel, public samplePhrase: SamplePhrase, private utterance: string) {
         const cleanUtterance = utterance.replace(/[\!\"\¿\?|\#\$\%\/\(\)\=\+\-\_\<\>\*\{\}\·\¡\[\]\.\,\;\:]/g, "");
         const matchArray = cleanUtterance.match(samplePhrase.regex());
 
@@ -184,8 +171,7 @@ export class SamplePhraseTest {
             slotValueLength += slotValue.length;
         }
 
-        const score = this.matchString.length - slotValueLength;
-        return score;
+        return this.matchString.length - slotValueLength;
     }
 
     public scoreSlots(): number {
@@ -195,6 +181,7 @@ export class SamplePhraseTest {
                 typed++;
             }
         }
+
         return typed;
     }
 
@@ -242,11 +229,11 @@ export class SamplePhraseTest {
         return result;
     }
 
-    private intentSchema(): IntentSchema {
-        return this.samplePhrase.sampleUtterances.interactionModel().intentSchema;
+    private intentSchema(): IIntentSchema {
+        return this.interactionModel.intentSchema;
     }
 
     private slotTypes(): SlotTypes {
-        return this.samplePhrase.sampleUtterances.interactionModel().slotTypes;
+        return this.interactionModel.slotTypes;
     }
 }

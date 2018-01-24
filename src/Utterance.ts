@@ -1,14 +1,14 @@
 /**
  * Turns a phrase into an intent
  */
-import {InteractionModel} from "./InteractionModel";
+import {IModel} from "./IModel";
 import {SamplePhrase} from "./SampleUtterances";
 
 export class Utterance {
     public matchedSample: SamplePhrase;
     private slots: string[];
 
-    public constructor(public interactionModel: InteractionModel, public phrase: string) {
+    public constructor(public interactionModel: IModel, public phrase: string) {
         this.phrase = phrase.toLowerCase();
         this.matchIntent();
     }
