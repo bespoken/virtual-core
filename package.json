@@ -14,6 +14,7 @@
     "lib/src/BuiltinUtterances.d.ts",
     "lib/src/IIntentSchema.d.ts",
     "lib/src/IModel.d.ts",
+    "lib/src/Index.d.ts",
     "lib/src/SampleUtterances.d.ts",
     "lib/src/SlotTypes.d.ts",
     "lib/src/Utterance.d.ts"
