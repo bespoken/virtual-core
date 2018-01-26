@@ -8,14 +8,12 @@ export class SampleUtterances {
 
     private samples: {[id: string]: SamplePhrase[]} = {};
 
-    public constructor(interactionModel: IModel) {
-        this._interactionModel = interactionModel;
-    }
-
     // This is its own method, because it needs to be called at a particular point in initialization
     // We call it after loading the sample utterances and intents, while initializing the interaction model
     // Once we have the interaction model, we go back in add the builtin utterances
-    public addBuiltInSampleUtterances() {
+    public setInteractionModel(interactionModel: IModel) {
+        this._interactionModel = interactionModel;
+
         // Move to specific implementations
         const builtinValues = BuiltinUtterances.values();
         // We add each phrase one-by-one
@@ -54,25 +52,6 @@ export class SampleUtterances {
         // Just grab the first sample for now
         const firstIntent = Object.keys(this.samples)[0];
         return this.samples[firstIntent][0];
-    }
-
-    private parseFlatFile(fileData: string): void {
-        const lines = fileData.split("\n");
-        for (const line of lines) {
-            if (line.trim().length === 0) {
-                // We skip blank lines - which is what Alexa does
-                continue;
-            }
-
-            const index = line.indexOf(" ");
-            if (index === -1) {
-                throw Error("Invalid sample utterance: " + line);
-            }
-
-            const intent = line.substr(0, index);
-            const sample = line.substr(index).trim();
-            this.addSample(intent, sample);
-        }
     }
 }
 
