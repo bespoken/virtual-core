@@ -35,7 +35,7 @@ export class SampleUtterances {
         if (!(intent in this.samples)) {
             this.samples[intent] = [];
         }
-        this.samples[intent].push(new SamplePhrase(this._interactionModel, this, intent, sample));
+        this.samples[intent].push(new SamplePhrase(this, intent, sample));
     }
 
     public samplesForIntent(intent: string): SamplePhrase [] {
@@ -62,8 +62,7 @@ export class SamplePhrase {
     private slotNames: string[] = [];
     private _regex: string;
 
-    public constructor(private interactionModel: IModel,
-                       public sampleUtterances: SampleUtterances,
+    public constructor(public sampleUtterances: SampleUtterances,
                        public intent: string,
                        public phrase: string) {
         this.phrase = phrase;
@@ -94,7 +93,7 @@ export class SamplePhrase {
      * @returns {[]}
      */
     public matchesUtterance(utterance: string): SamplePhraseTest {
-        return new SamplePhraseTest(this.interactionModel, this, utterance);
+        return new SamplePhraseTest(this, utterance);
     }
 
     /**
@@ -124,7 +123,7 @@ export class SamplePhraseTest {
     private matched = false;
     private matchString: string;
 
-    public constructor(private interactionModel: IModel, public samplePhrase: SamplePhrase, private utterance: string) {
+    public constructor(public samplePhrase: SamplePhrase, private utterance: string) {
         const cleanUtterance = utterance.replace(/[\!\"\¿\?|\#\$\%\/\(\)\=\+\-\_\<\>\*\{\}\·\¡\[\]\.\,\;\:]/g, "");
         const matchArray = cleanUtterance.match(samplePhrase.regex());
 
@@ -209,10 +208,10 @@ export class SamplePhraseTest {
     }
 
     private intentSchema(): IIntentSchema {
-        return this.interactionModel.intentSchema;
+        return this.samplePhrase.sampleUtterances.interactionModel().intentSchema;
     }
 
     private slotTypes(): SlotTypes {
-        return this.interactionModel.slotTypes;
+        return this.samplePhrase.sampleUtterances.interactionModel().slotTypes;
     }
 }
