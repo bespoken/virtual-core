@@ -8,14 +8,12 @@ export class SampleUtterances {
 
     private samples: {[id: string]: SamplePhrase[]} = {};
 
-    public constructor(interactionModel: IModel) {
-        this._interactionModel = interactionModel;
-    }
-
     // This is its own method, because it needs to be called at a particular point in initialization
     // We call it after loading the sample utterances and intents, while initializing the interaction model
     // Once we have the interaction model, we go back in add the builtin utterances
-    public addBuiltInSampleUtterances() {
+    public setInteractionModel(interactionModel: IModel) {
+        this._interactionModel = interactionModel;
+
         // Move to specific implementations
         const builtinValues = BuiltinUtterances.values();
         // We add each phrase one-by-one
@@ -37,7 +35,7 @@ export class SampleUtterances {
         if (!(intent in this.samples)) {
             this.samples[intent] = [];
         }
-        this.samples[intent].push(new SamplePhrase(this._interactionModel, this, intent, sample));
+        this.samples[intent].push(new SamplePhrase(this, intent, sample));
     }
 
     public samplesForIntent(intent: string): SamplePhrase [] {
@@ -55,25 +53,6 @@ export class SampleUtterances {
         const firstIntent = Object.keys(this.samples)[0];
         return this.samples[firstIntent][0];
     }
-
-    private parseFlatFile(fileData: string): void {
-        const lines = fileData.split("\n");
-        for (const line of lines) {
-            if (line.trim().length === 0) {
-                // We skip blank lines - which is what Alexa does
-                continue;
-            }
-
-            const index = line.indexOf(" ");
-            if (index === -1) {
-                throw Error("Invalid sample utterance: " + line);
-            }
-
-            const intent = line.substr(0, index);
-            const sample = line.substr(index).trim();
-            this.addSample(intent, sample);
-        }
-    }
 }
 
 /**
@@ -83,8 +62,7 @@ export class SamplePhrase {
     private slotNames: string[] = [];
     private _regex: string;
 
-    public constructor(private interactionModel: IModel,
-                       public sampleUtterances: SampleUtterances,
+    public constructor(public sampleUtterances: SampleUtterances,
                        public intent: string,
                        public phrase: string) {
         this.phrase = phrase;
@@ -115,7 +93,7 @@ export class SamplePhrase {
      * @returns {[]}
      */
     public matchesUtterance(utterance: string): SamplePhraseTest {
-        return new SamplePhraseTest(this.interactionModel, this, utterance);
+        return new SamplePhraseTest(this, utterance);
     }
 
     /**
@@ -145,7 +123,7 @@ export class SamplePhraseTest {
     private matched = false;
     private matchString: string;
 
-    public constructor(private interactionModel: IModel, public samplePhrase: SamplePhrase, private utterance: string) {
+    public constructor(public samplePhrase: SamplePhrase, private utterance: string) {
         const cleanUtterance = utterance.replace(/[\!\"\¿\?|\#\$\%\/\(\)\=\+\-\_\<\>\*\{\}\·\¡\[\]\.\,\;\:]/g, "");
         const matchArray = cleanUtterance.match(samplePhrase.regex());
 
@@ -230,10 +208,10 @@ export class SamplePhraseTest {
     }
 
     private intentSchema(): IIntentSchema {
-        return this.interactionModel.intentSchema;
+        return this.samplePhrase.sampleUtterances.interactionModel().intentSchema;
     }
 
     private slotTypes(): SlotTypes {
-        return this.interactionModel.slotTypes;
+        return this.samplePhrase.sampleUtterances.interactionModel().slotTypes;
     }
 }

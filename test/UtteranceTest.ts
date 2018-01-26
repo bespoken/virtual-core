@@ -120,9 +120,9 @@ const model: IModel = {
 
 model.slotTypes.addTypes(BuiltinSlotTypes.values());
 
-model.sampleUtterances = new SampleUtterances(model);
+model.sampleUtterances = new SampleUtterances();
 
-model.sampleUtterances.addBuiltInSampleUtterances();
+model.sampleUtterances.setInteractionModel(model);
 
 Object.keys(sampleUtterancesValues).forEach((slotName) => {
         (sampleUtterancesValues as any)[slotName].forEach((sample: string) => {

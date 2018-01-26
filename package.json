@@ -2,7 +2,7 @@
   "name": "virtual-core",
   "license": "Apache-2.0",
   "private": false,
-  "version": "0.0.1",
+  "version": "0.0.9",
   "main": "./lib/src/Index.js",
   "typings": "./lib/src/Index.d.ts",
   "engines": {
@@ -14,9 +14,11 @@
     "lib/src/BuiltinUtterances.d.ts",
     "lib/src/IIntentSchema.d.ts",
     "lib/src/IModel.d.ts",
+    "lib/src/Index.d.ts",
     "lib/src/SampleUtterances.d.ts",
     "lib/src/SlotTypes.d.ts",
-    "lib/src/Utterance.d.ts" ],
+    "lib/src/Utterance.d.ts"
+  ],
   "nyc": {
     "exclude": [
       "lib/test/*.js",
@@ -52,6 +54,6 @@
     "ts-node": "^3.3.0",
     "tslint": "^5.7.0",
     "typedoc": "^0.8.0",
-    "typescript": "^2.5.1"
+    "typescript": "^2.6.2"
   }
 }
