@@ -1,4 +1,3 @@
-import {BuiltinUtterances} from "./BuiltinUtterances";
 import {IIntentSchema} from "./IIntentSchema";
 import {IModel} from "./IModel";
 import {SlotMatch, SlotTypes} from "./SlotTypes";
@@ -13,18 +12,6 @@ export class SampleUtterances {
     // Once we have the interaction model, we go back in add the builtin utterances
     public setInteractionModel(interactionModel: IModel) {
         this._interactionModel = interactionModel;
-
-        // Move to specific implementations
-        const builtinValues = BuiltinUtterances.values();
-        // We add each phrase one-by-one
-        // It is possible the built-ins have additional samples defined
-        for (const key of Object.keys(builtinValues)) {
-            if (this._interactionModel.hasIntent(key)) {
-                for (const phrase of builtinValues[key]) {
-                    this.addSample(key, phrase);
-                }
-            }
-        }
     }
 
     public interactionModel(): IModel {
