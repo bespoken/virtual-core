@@ -9,7 +9,6 @@ export class Utterance {
     private slots: string[];
 
     public constructor(public interactionModel: IModel, public phrase: string) {
-        this.phrase = phrase.toLowerCase();
         this.matchIntent();
     }
 

@@ -68,8 +68,8 @@ export class SamplePhrase {
         return this.slotNames.length;
     }
 
-    public regex(): string {
-        return this._regex;
+    public regex(): RegExp {
+        return new RegExp("^" + this._regex + "$", "i");
     }
 
     /**
@@ -101,7 +101,7 @@ export class SamplePhrase {
         // We make the regex lowercase, so that we match a phrase regardless of case
         // We only switch to lowercase here because if we change the slotnames to lowercase,
         //  it throws off the slot matching
-        return phrase.toLowerCase();
+        return phrase;
     }
 }
 
@@ -117,8 +117,9 @@ export class SamplePhraseTest {
         this.matched = false;
         // If we have a regex match, check all the slots match their types
         if (matchArray) {
-            this.slotMatches = this.checkSlots(matchArray[0], matchArray.slice(1));
-            if (this.slotMatches) {
+            const slotMatches = this.checkSlots(matchArray[0], matchArray.slice(1));
+            if (slotMatches) {
+                this.slotMatches = slotMatches;
                 this.matched = true;
                 this.matchString = matchArray[0];
             }
@@ -153,7 +154,7 @@ export class SamplePhraseTest {
     public slotValues(): string [] {
         const values = [];
         for (const slotMatch of this.slotMatches) {
-            values.push(slotMatch.slotValueName);
+            values.push(slotMatch.value);
         }
         return values;
     }

@@ -26,7 +26,6 @@ export class SlotTypes {
     }
 
     public matchesSlot(name: string, value: string): SlotMatch {
-        value = value.toLowerCase().trim();
         const slotType = this.slotType(name);
         // If no slot type definition is provided, we just assume it is a match
         if (!slotType) {
@@ -42,40 +41,78 @@ export class SlotTypes {
 export class SlotMatch {
     public untyped: boolean;
     public constructor(public matches: boolean,
-                       public slotValueName?: string,
-                       public slotValueID?: string,
+                       public value?: string,
+                       public enumeratedValue?: ISlotValue,
                        public slotValueSynonym?: string) {
         this.untyped = false;
     }
 }
 
 export class SlotType implements ISlotType {
-    public constructor(public name: string, public values: ISlotValue[]) {}
+    public constructor(public name: string, public values: ISlotValue[]) {
+        for (const value of values) {
+            // We default builtin to false
+            if (value.builtin === undefined) {
+                value.builtin = false;
+            }
+        }
+    }
 
-    public match(value: string) {
-        let match: SlotMatch = new SlotMatch(false);
+    public isEnumerated() {
+        return !this.isBuiltin();
+    }
+
+    public isCustom() {
+        let custom = false;
+        if (this.isBuiltin()) {
+            for (const value of this.values) {
+                if (!value.builtin) {
+                    custom = true;
+                    break;
+                }
+            }
+        } else {
+            custom = true;
+        }
+        return custom;
+    }
+
+    public isBuiltin() {
+        return this.name.startsWith("AMAZON");
+    }
+
+    public match(value: string): SlotMatch {
+        const matches = this.matchAll(value);
+        if (matches.length > 0) {
+            return matches[0];
+        } else if (this.isBuiltin() && !this.isEnumerated()) {
+            // If this is a builtin, we still count it as a match, because we treat these as free form
+            // Unless we explicilty have enumerated the builtin - we have rarely done this so far
+            return new SlotMatch(true, value);
+        }
+        return new SlotMatch(false);
+    }
+
+    public matchAll(value: string): SlotMatch[] {
+        value = value.trim();
+        const matches: SlotMatch[] = [];
 
         for (const slotValue of this.values) {
             // First check the name value - the value and the synonyms are both valid matches
             // Refer here for definitive rules:
             //  https://developer.amazon.com/docs/custom-skills/
             //      define-synonyms-and-ids-for-slot-type-values-entity-resolution.html
-            if (slotValue.name.value.toLowerCase() === value) {
-                match = new SlotMatch(true, slotValue.name.value);
+            if (slotValue.name.value.toLowerCase() === value.toLowerCase()) {
+                matches.push(new SlotMatch(true, value, slotValue));
             } else if (slotValue.name.synonyms) {
                 for (const synonym of slotValue.name.synonyms) {
-                    if (synonym.toLowerCase() === value) {
-                        match = new SlotMatch(true, slotValue.name.value, slotValue.id, synonym);
-                        break;
+                    if (synonym.toLowerCase() === value.toLowerCase()) {
+                        matches.push(new SlotMatch(true, value, slotValue, synonym));
                     }
                 }
             }
-
-            if (match.matches) {
-                break;
-            }
         }
-        return match;
+        return matches;
     }
 }
 
@@ -86,6 +123,7 @@ export interface ISlotType {
 
 export interface ISlotValue {
     id?: string;
+    builtin?: boolean;
     name: ISlotValueName;
 }
 
