@@ -47,6 +47,12 @@ const unpreparedIntentList = [
         ],
     },
     {
+          intent: "LiteralInput",
+          slots: [
+              {name: "literal", type: "AMAZON.LITERAL"}
+          ]
+    },
+    {
         intent: "AMAZON.HelpIntent",
     },
 ];
@@ -75,6 +81,7 @@ const sampleUtterancesValues = {
     CustomSlot: ["{country}"],
     Hello: ["hi", "hello", "hi there", "good morning"],
     MultipleSlots: ["multiple {SlotA} and {SlotB}", "reversed {SlotB} then {SlotA}", "{SlotA}"],
+    LiteralInput: ["{first literal input | literal}", "{second literal input | literal}"],
     NumberSlot: ["{number}", "{number} test"],
     Play: ["play", "play next", "play now"],
     SlottedIntent: ["slot {SlotName}"],
@@ -211,6 +218,13 @@ describe("UtteranceTest", function() {
             const utterance = new Utterance(model, "good, -morning:");
             assert.isTrue(utterance.matched());
             assert.equal(utterance.intent(), "Hello");
+        });
+
+        it("Matches a literal slot", () => {
+            const utterance = new Utterance(model, "second literal input");
+            assert.isTrue(utterance.matched());
+            assert.equal(utterance.intent(), "LiteralInput");
+            assert.equal(utterance.matchedSample.slotName(0), "literal");
         });
     });
 });

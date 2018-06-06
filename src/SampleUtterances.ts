@@ -93,8 +93,22 @@ export class SamplePhrase {
         const startIndex = phrase.indexOf("{");
         if (startIndex !== -1) {
             const endIndex = phrase.indexOf("}", startIndex);
-            this.slotNames.push(phrase.substring(startIndex + 1, endIndex));
-            phrase = phrase.substring(0, startIndex).trim() + "(.*)" + phrase.substring(endIndex + 1).trim();
+            const slotName = phrase.substring(startIndex + 1, endIndex);
+
+            const pipe = slotName.indexOf("|");
+
+            if(pipe === -1){
+                this.slotNames.push(slotName);
+                phrase = phrase.substring(0, startIndex).trim() + "(.*)" + phrase.substring(endIndex + 1).trim();
+            } else{
+                // Literal are in the format "sample { <literal sample> | <slotname>}"
+                // e.g.: "I'm an {aquarius | literal}"
+                const literalSample = slotName.substring(0, pipe);
+                const literalSlotName = slotName.substring(pipe + 2, slotName.length);
+                this.slotNames.push(literalSlotName);
+                phrase = phrase.substring(0, startIndex).trim() + literalSample.trim() + phrase.substring(endIndex + 1).trim();
+            }
+
             phrase = this.phraseToRegex(phrase);
         }
 
