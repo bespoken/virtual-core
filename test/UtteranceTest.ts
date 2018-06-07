@@ -53,6 +53,12 @@ const unpreparedIntentList = [
           ],
     },
     {
+          intent: "SearchQueryIntent",
+          slots: [
+              {name: "searchSlot", type: "AMAZON.SearchQuery"}
+          ]
+    },
+    {
         intent: "AMAZON.HelpIntent",
     },
 ];
@@ -84,6 +90,7 @@ const sampleUtterancesValues = {
     MultipleSlots: ["multiple {SlotA} and {SlotB}", "reversed {SlotB} then {SlotA}", "{SlotA}"],
     NumberSlot: ["{number}", "{number} test"],
     Play: ["play", "play next", "play now"],
+    SearchQueryIntent: ["look for {searchSlot}", "find {searchSlot}"],
     SlottedIntent: ["slot {SlotName}"],
     StringSlot: ["{stringSlot}"],
 };
@@ -227,6 +234,15 @@ describe("UtteranceTest", function() {
             assert.isTrue(utterance.matched());
             assert.equal(utterance.intent(), "LiteralInput");
             assert.equal(utterance.matchedSample.slotName(0), "literal");
+        });
+
+        it("Matches anything in a search query slot", () => {
+            const searchItem = `an item that I need to find using voice`;
+            const utterance = new Utterance(model, `look for ${searchItem}`);
+            assert.isTrue(utterance.matched());
+            assert.equal(utterance.intent(), "SearchQueryIntent");
+            assert.equal(utterance.matchedSample.slotName(0), "searchSlot");
+            assert.equal(utterance.slotByName('searchSlot'), searchItem);
         });
     });
 });
