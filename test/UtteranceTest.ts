@@ -49,8 +49,8 @@ const unpreparedIntentList = [
     {
           intent: "LiteralInput",
           slots: [
-              {name: "literal", type: "AMAZON.LITERAL"}
-          ]
+              {name: "literal", type: "AMAZON.LITERAL"},
+          ],
     },
     {
         intent: "AMAZON.HelpIntent",
@@ -80,8 +80,8 @@ const intentSchema: IIntentSchema = {
 const sampleUtterancesValues = {
     CustomSlot: ["{country}"],
     Hello: ["hi", "hello", "hi there", "good morning"],
-    MultipleSlots: ["multiple {SlotA} and {SlotB}", "reversed {SlotB} then {SlotA}", "{SlotA}"],
     LiteralInput: ["{first literal input | literal}", "{second literal input | literal}"],
+    MultipleSlots: ["multiple {SlotA} and {SlotB}", "reversed {SlotB} then {SlotA}", "{SlotA}"],
     NumberSlot: ["{number}", "{number} test"],
     Play: ["play", "play next", "play now"],
     SlottedIntent: ["slot {SlotName}"],

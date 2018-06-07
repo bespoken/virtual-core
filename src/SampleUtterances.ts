@@ -97,18 +97,17 @@ export class SamplePhrase {
 
             const pipe = slotName.indexOf("|");
 
-            if(pipe === -1){
+            if (pipe === -1) {
                 this.slotNames.push(slotName);
-                phrase = phrase.substring(0, startIndex).trim() + "(.*)" + phrase.substring(endIndex + 1).trim();
-            } else{
+            } else {
                 // Literal are in the format "sample { <literal sample> | <slotname>}"
                 // e.g.: "I'm an {aquarius | literal}"
                 const literalSample = slotName.substring(0, pipe);
                 const literalSlotName = slotName.substring(pipe + 2, slotName.length);
                 this.slotNames.push(literalSlotName);
-                phrase = phrase.substring(0, startIndex).trim() + literalSample.trim() + phrase.substring(endIndex + 1).trim();
             }
 
+            phrase = phrase.substring(0, startIndex).trim() + "(.*)" + phrase.substring(endIndex + 1).trim();
             phrase = this.phraseToRegex(phrase);
         }
 
