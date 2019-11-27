@@ -120,6 +120,8 @@ const slotTypes = [{
             },
         },
     ],
+}, {
+    name: "EMPTY_VALUES_SLOT",
 }];
 
 const model: IModel = {
