@@ -51,9 +51,9 @@ export class SlotMatch {
 export class SlotType implements ISlotType {
     public constructor(public name: string, public values?: ISlotValue[]) {
         if (!values) {
-            values = [];
+            this.values = [];
         }
-        for (const value of values) {
+        for (const value of this.values) {
             // We default builtin to false
             if (value.builtin === undefined) {
                 value.builtin = false;
