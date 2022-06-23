@@ -46,7 +46,7 @@
     "@types/mocha": "^2.2.46",
     "@types/node": "^6.0.88",
     "chai": "^4.1.2",
-    "codecov": "^3.0.2",
+    "codecov": "^3.8.3",
     "gulp": "^3.9.1",
     "gulp-typedoc": "^2.0.3",
     "mocha": "^3.5.0",
